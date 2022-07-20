@@ -1,0 +1,21 @@
+{% extends "ProyectoCoderApp/base.html" %}
+{% load static %}
+
+{% block tituloPagina %}
+Noticias - ATR Garage
+{% endblock %}
+
+{% block contenidoPagina %}
+<br><br><br>
+
+<p><h1 class="text-center"><b>Noticias</b></h1></p>
+<div class="card">
+
+  <div class="card-body">
+    <h4 class="card-title">Proximo ingreso.</h4>
+    <h6><p class="card-text">Para más información ingresá</p></h6>
+    <a href="{% url 'vehiculos' %}" class="btn btn-primary"> <strong>Aquí</strong></a>
+  </div>
+</div>
+
+{% endblock %}

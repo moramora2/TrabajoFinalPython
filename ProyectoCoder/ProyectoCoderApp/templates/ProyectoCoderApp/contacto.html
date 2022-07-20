@@ -1,0 +1,73 @@
+{% extends "ProyectoCoderApp/base.html" %}
+{% load static %}
+
+{% block tituloPagina %}
+Contacto - ATR Garage
+{% endblock %}
+
+{% block contenidoPagina %}
+
+  </head>
+  <body>
+    <nav class="navbar navbar-dark bg-primary">
+      <div class="container">
+        <div class="container-fluid">
+          
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-5">
+        <br><br>
+          <h1 class="mb-5"><b>Contactanos</b></h1>
+          <form action="https://formsubmit.co/alanbourre9@hotmail.com" method="POST">
+            <div class="mb-3">
+              <label class="form-label">Nombre y Apellido</label>
+              <input name="name" type="text" class="form-control" required />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Correo electronico</label>
+              <input name="email" type="email" class="form-control" required />
+              <div id="emailHelp" class="form-text">
+                
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Teléfono (opcional)</label>
+              <input name="phone" \type="tel" class="form-control" />
+              <div id="phoneHelp" class="form-text">
+                Para una más rápida atención.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Escribinos un mensaje</label>
+              <textarea
+                name="message"
+                class="form-control"
+                rows="3"
+                required
+              ></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Enviar</button>
+          </form>
+          <br><br>
+        </div>
+        
+
+        <div class="col-1"></div>
+
+       
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
+
+{% endblock %}

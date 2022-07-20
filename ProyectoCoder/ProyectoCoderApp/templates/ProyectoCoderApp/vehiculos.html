@@ -1,0 +1,68 @@
+{% extends 'ProyectoCoderApp/base.html' %}
+{% load static %}
+
+{% block tituloPagina %}
+Vehiculos - App Coder
+{% endblock %}
+
+{% block contenidoPagina %}
+<section class="bg-light py-5">
+    <div class="container px-5">
+        <h1>Veh&iacute;culos:</h1>
+        <br>
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-12">
+                <form class="d-flex my-2 my-lg-0" action="" method="post">
+                    {% csrf_token %}
+                    <input class="flex-grow-0 form-control mr-sm-2" type="search" name="search" placeholder="Buscar por marca/modelo" aria-label="Search">
+                    <button class="btn btn-outline-success text-nowrap ms-3 my-2 my-sm-0" type="submit"> <i class="bi bi-search"></i> Buscar</button>
+                    <a class="btn btn-outline-success text-nowrap ms-3 my-2 my-sm-0" href="{% url 'ingresar_vehiculo' %}"> <i class="bi bi-plus-lg"></i>Ingresar veh&iacute;culo</a>
+                </form>
+            </div>
+        </div>
+        <br>
+        <h4>Resultados
+            {% if search %}
+                para "{{busqueda}}":
+            {% else %}
+                totales:
+            {% endif %}
+        </h4>
+        <br>
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-10 table-responsive">
+                <table class="table table-theme">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Marca</th>
+                            <th scope="col">Modelo</th>
+                            <th scope="col">A&ntilde;o</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Imagen</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        {% for vehiculo in vehiculos %}
+                            <tr>
+                                <th scope="row">{{forloop.counter}}</th>
+                                <td>{{vehiculo.marca}}</td>
+                                <td>{{vehiculo.modelo}}</td>
+                                <td>{{vehiculo.anio}}</td>
+                                <td>{{vehiculo.precio}}</td>
+                                <td><img src="{{vehiculo.imagen.url}}" width="80" height="50"></img></td>
+                                <td>
+                                    <a href="{% url 'editar_vehiculo' vehiculo.id %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Editar</a>
+                                    <a href="{% url 'eliminar_vehiculo' vehiculo.id %}" class="text-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Eliminar</a>
+                                    <a href="{% url 'resena_vehiculo' vehiculo.id %}" class="text-success badge badge-success text-decoration-none"> <i class="bi bi-pencil-square"></i> Ver Reseñas</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

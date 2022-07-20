@@ -1,0 +1,95 @@
+{% extends 'ProyectoCoderApp/base.html' %}
+{% load static %}
+
+{% block tituloPagina %}
+Vehiculos - App Coder
+{% endblock %}
+
+{% block contenidoPagina %}
+<section class="bg-light py-5">
+    <div class="container px-5">
+        <h1>Reseñas de Veh&iacute;culos:</h1>
+       
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-10 table-responsive">
+                <table class="table table-theme">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Telefono</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Comentario</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        {% for res in resenas %}
+                            <tr>
+                                <th scope="row">{{forloop.counter}}</th>
+                                <td>{{res.nombre}}</td>
+                                <td>{{res.telefono}}</td>
+                                <td>{{res.email}}</td>
+                                <td>{{res.Fecha}}</td>
+                                <td>{{res.comentario}}</td>
+                                <td>
+                                  <a href="{% url 'eliminar_resena' res.id res.idvehiculo %}" class="text-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Eliminar</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+          </div>
+          <div class="col-12 gx-5 justify-content-center">
+          <form action="" method="post" enctype="multipart/form-data" class="form-control">
+              {% csrf_token %}
+
+                <div class="row g-3 mb-3 align-items-center">
+                  <div class="col-2">
+                    <label for="Nombre" class="col-form-label">Nombre</label>
+                  </div>
+                  <div class="col-10">
+                      {{form.nombre}}
+                  </div>
+                </div>
+
+                <div class="row g-3 mb-3 align-items-center">
+                  <div class="col-2">
+                    <label for="Email" class="col-form-label">Email</label>
+                  </div>
+                  <div class="col-10">
+                      {{form.email}}
+                  </div>
+                </div>
+
+                <div class="row g-3 mb-3 align-items-center">
+                  <div class="col-2">
+                    <label for="telefono" class="col-form-label">Telefono</label>
+                  </div>
+                  <div class="col-10">
+                      {{form.telefono}}
+                  </div>
+                </div>
+
+                <div class="row g-3 mb-3 align-items-center">
+                  <div class="col-2">
+                    <label for="comentario" class="col-form-label">Comentario</label>
+                  </div>
+                  <div class="col-10">
+                      {{form.comentario}}
+                  </div>
+                </div>
+
+                <div class="row mb-3 align-items-center">
+                  <div class= "col-12 text-center">
+                      <input type="submit" class="btn btn-primary" value="Ingresar">
+                  </div>
+                </div>
+          </form>
+          </div>
+    </div>
+</section>
+{% endblock %}
